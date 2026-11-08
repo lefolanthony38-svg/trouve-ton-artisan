@@ -5,9 +5,11 @@ import ListeArtisans from './pages/ListeArtisans';
 import FicheArtisan from './pages/FicheArtisan';
 import PageLegale from './pages/PageLegale';
 import Page404 from './pages/Page404';
+import Footer from './components/Footer';
 
 function App() {
   return (
+     <div className="d-flex flex-column min-vh-100">
     <Routes>
       <Route path="/" element={<Accueil />} />
       <Route path="/categorie/:id" element={<ListeArtisans />} />
@@ -19,6 +21,8 @@ function App() {
       <Route path="/cookies" element={<PageLegale />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
+     <Footer />
+    </div>
   );
 }
 
