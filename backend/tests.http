@@ -1,0 +1,50 @@
+### Les catégories (menu)
+GET http://localhost:3000/api/categories
+x-api-key: {{$dotenv API_KEY}}
+
+### Les artisans du mois (accueil)
+GET http://localhost:3000/api/artisans/top
+x-api-key: {{$dotenv API_KEY}}
+
+### Les artisans d'une catégorie (Bâtiment)
+GET http://localhost:3000/api/categories/2/artisans
+x-api-key: {{$dotenv API_KEY}}
+
+### Recherche par nom
+GET http://localhost:3000/api/artisans?recherche=fleur
+x-api-key: {{$dotenv API_KEY}}
+
+### Fiche artisan
+GET http://localhost:3000/api/artisans/2
+x-api-key: {{$dotenv API_KEY}}
+
+### Fiche artisan inexistant (doit répondre 404)
+GET http://localhost:3000/api/artisans/999
+x-api-key: {{$dotenv API_KEY}}
+
+### Contact : formulaire mal rempli (doit répondre 400)
+POST http://localhost:3000/api/artisans/2/contact
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "nom": "J",
+  "email": "julie.martin@",
+  "objet": "Hi",
+  "message": "court"
+}
+
+### Contact : formulaire correct (doit répondre 200)
+POST http://localhost:3000/api/artisans/2/contact
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "nom": "Julie Martin",
+  "email": "julie@mail.fr",
+  "objet": "Commande de chocolats",
+  "message": "Bonjour, je voudrais commander des chocolats pour Noël."
+}
+
+### Sécurité : appel sans clé (doit répondre 401)
+GET http://localhost:3000/api/categories

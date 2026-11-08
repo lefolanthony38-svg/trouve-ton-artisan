@@ -1,0 +1,9 @@
+# Dépendances : se réinstallent avec "npm install"
+node_modules/
+
+# Secrets : mots de passe, clé d'API
+.env
+
+# Fichiers système
+Thumbs.db
+.DS_Store
