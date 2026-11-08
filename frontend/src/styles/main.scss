@@ -1,0 +1,20 @@
+// ===== Charte graphique (brief §4.4) =====
+$fond-clair:  #f1f8fc;
+$bleu:        #0074c7;
+$bleu-fonce:  #00497c;
+$gris-fonce:  #384050;
+$rouge:       #cd2c2e;
+$vert:        #82b864;
+
+// On remplace les couleurs de Bootstrap par celles de la charte
+$primary:   $bleu;
+$secondary: $bleu-fonce;
+$danger:    $rouge;
+$success:   $vert;
+$body-color: $gris-fonce;
+
+// Police de la charte (Graphik), avec des polices de secours
+$font-family-base: "Graphik", "Inter", system-ui, sans-serif;
+
+// On charge Bootstrap APRÈS nos variables, pour qu'il les utilise
+@import "bootstrap/scss/bootstrap";
