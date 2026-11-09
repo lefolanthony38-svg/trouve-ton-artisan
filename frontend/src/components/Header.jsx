@@ -1,13 +1,22 @@
 // En-tête : logo (lien vers l'accueil) + menu des catégories (venant de la base)
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { appelerApi } from '../services/api';
 import logo from '../assets/logo.svg';
 
 function Header() {
   // La boîte "categories", vide au départ
   const [categories, setCategories] = useState([]);
+  const [texte, setTexte] = useState('');
+  const naviguer = useNavigate();
 
+  // Quand on valide la recherche : on va sur /recherche?q=...
+  function lancerRecherche(event) {
+    event.preventDefault();
+    const motCle = texte.trim();
+    if (motCle === '') return; // recherche vide : on ne fait rien
+    naviguer(`/recherche?q=${encodeURIComponent(motCle)}`);
+  }
   // Au démarrage : on demande les catégories à l'API, puis on les range dans la boîte
   useEffect(() => {
     appelerApi('/categories')
@@ -32,7 +41,18 @@ function Header() {
             </li>
           ))}
         </ul>
-
+        <form className="d-flex" role="search" onSubmit={lancerRecherche}>
+          <label htmlFor="recherche" className="visually-hidden">Rechercher un artisan par son nom</label>
+          <input
+            id="recherche"
+            type="search"
+            className="form-control rounded-pill border-primary"
+            placeholder="Rechercher un artisan…"
+            value={texte}
+            onChange={(event) => setTexte(event.target.value)}
+          />
+          <button type="submit" className="btn btn-primary rounded-pill ms-2">Rechercher</button>
+        </form>
       </nav>
     </header>
   );
