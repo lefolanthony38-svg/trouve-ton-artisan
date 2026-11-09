@@ -11,6 +11,7 @@
         "categorie",
         "CEDEX",
         "cours",
+        "demi",
         "Données",
         "erreur",
         "erreurs",
@@ -21,11 +22,13 @@
         "même",
         "modèle",
         "personnelles",
+        "pleines",
         "Région",
         "répond",
         "reponse",
         "Rhône",
         "serveur",
-        "transmet"
+        "transmet",
+        "vides"
     ]
 }
