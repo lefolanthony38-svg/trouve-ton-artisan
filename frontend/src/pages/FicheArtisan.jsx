@@ -14,7 +14,7 @@ function FicheArtisan() {
   useEffect(() => {
     setArtisan(null);
     setIntrouvable(false);
-    appelerApi(`???`)
+    appelerApi(`/artisans/${id}`)
       .then((donnees) => setArtisan(donnees))
       .catch(() => setIntrouvable(true)); // 404 de l'API → page introuvable
   }, [id]);
