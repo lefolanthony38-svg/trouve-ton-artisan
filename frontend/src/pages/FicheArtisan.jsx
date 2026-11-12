@@ -10,6 +10,11 @@ function FicheArtisan() {
   const { id } = useParams();
   const [artisan, setArtisan] = useState(null);
   const [introuvable, setIntrouvable] = useState(false);
+  const [form, setForm] = useState({ nom: '', email: '', objet: '', message: '' });
+
+  function changerChamp(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
 
   useEffect(() => {
     setArtisan(null);
@@ -57,6 +62,32 @@ function FicheArtisan() {
       <section className="container py-4">
         <h2 className="text-secondary">À propos</h2>
         <p>{artisan.a_propos}</p>
+      </section>
+                 <section className="container pb-5">
+        <h2 className="text-secondary">Contacter l'artisan</h2>
+        <form>
+          <div className="mb-3">
+            <label htmlFor="nom" className="form-label">Nom</label>
+            <input id="nom" name="nom" type="text" className="form-control" maxLength={100} required value={form.nom} onChange={changerChamp} />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input id="email" name="email" type="email" className="form-control" required value={form.email} onChange={changerChamp} />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="objet" className="form-label">Objet</label>
+            <input id="objet" name="objet" type="text" className="form-control" maxLength={50} required value={form.objet} onChange={changerChamp} />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="message" className="form-label">Message</label>
+            <textarea id="message" name="message" className="form-control" maxLength={500} rows={4} required value={form.message} onChange={changerChamp} />
+          </div>
+
+          <button type="submit" className="btn btn-primary">Envoyer</button>
+        </form>
       </section>
     </main>
   );
