@@ -1,34 +1,40 @@
 // Page d'accueil : explication en 4 étapes + les 3 artisans du mois
-import { useState, useEffect } from 'react';
-import { appelerApi } from '../services/api';
-import CarteArtisan from '../components/CarteArtisan';
+import { useState, useEffect } from "react";
+import { appelerApi } from "../services/api";
+import CarteArtisan from "../components/CarteArtisan";
 
 // Les 4 étapes imposées par le brief
 const ETAPES = [
   "Choisir la catégorie d'artisanat dans le menu.",
-  'Choisir un artisan.',
-  'Le contacter via le formulaire de contact.',
-  'Une réponse sera apportée sous 48h.',
+  "Choisir un artisan.",
+  "Le contacter via le formulaire de contact.",
+  "Une réponse sera apportée sous 48h.",
 ];
 
 function Accueil() {
   const [artisans, setArtisans] = useState([]);
 
   useEffect(() => {
-    appelerApi('/artisans/top')
-    .then((donnees) => setArtisans(donnees))
+    appelerApi("/artisans/top")
+      .then((donnees) => setArtisans(donnees))
       .catch(() => setArtisans([]));
   }, []);
 
   return (
     <main className="flex-grow-1">
-            <title>Trouve ton artisan, Auvergne-Rhône-Alpes</title>
-      <meta name="description" content="Trouvez un artisan de confiance près de chez vous en Auvergne-Rhône-Alpes : bâtiment, services, fabrication, alimentation." />
+      <title>Trouve ton artisan, Auvergne-Rhône-Alpes</title>
+      <meta
+        name="description"
+        content="Trouvez un artisan de confiance près de chez vous en Auvergne-Rhône-Alpes : bâtiment, services, fabrication, alimentation."
+      />
       <section className="bg-light py-5">
         <div className="container">
-          <h1 className="text-secondary fw-bold">Trouvez l'artisan qu'il vous faut, près de chez vous</h1>
+          <h1 className="text-secondary fw-bold">
+            Trouvez l'artisan qu'il vous faut, près de chez vous
+          </h1>
           <p className="lead mb-0">
-            Choisissez une catégorie, consultez la fiche d'un artisan et contactez-le directement.
+            Choisissez une catégorie, consultez la fiche d'un artisan et
+            contactez-le directement.
           </p>
         </div>
       </section>
@@ -37,8 +43,13 @@ function Accueil() {
         <h2 className="text-secondary mb-4">Comment trouver mon artisan ?</h2>
         <ol className="row list-unstyled g-4">
           {ETAPES.map((texte, index) => (
-            <li className="col-12 col-md-6 col-lg-3 d-flex align-items-center gap-3" key={index}>
-              <span className="numero-etape" aria-hidden="true">{index + 1}</span>
+            <li
+              className="col-12 col-md-6 col-lg-3 d-flex align-items-center gap-3"
+              key={index}
+            >
+              <span className="numero-etape" aria-hidden="true">
+                {index + 1}
+              </span>
               <p className="mb-0">{texte}</p>
             </li>
           ))}

@@ -23,9 +23,9 @@ function texteValide(valeur, min, max) {
 }
   // Vigile : refuse toute demande qui n'a pas la bonne clé d'API
 function verifierCleApi(req, res, next) {
-  const cle = req.get('x-api-key');          // la clé envoyée par le site React
+  const cle = req.get('x-api-key');          
   if (cle !== process.env.API_KEY) {
-    return res.status(401).json({ message: 'Accès non autorisé' });   // trou : quel code ?
+    return res.status(401).json({ message: 'Accès non autorisé' });   
   }
   next(); // bonne clé : on laisse passer vers la route
 }
@@ -103,11 +103,11 @@ app.get('/api/artisans/:id', async (req, res) => {
 app.get('/api/categories/:id/artisans', async (req, res) => {
   try {
     const artisans = await Artisan.findAll({
-      attributes: { exclude: ['email'] },          // trou 1
+      attributes: { exclude: ['email'] },          
       include: {
         model: Specialite,
         attributes: ['nom'],
-        where: { id_categorie: req.params.id },           // trou 2 : le filtre sur la catégorie
+        where: { id_categorie: req.params.id },           
       },
     });
     res.json(artisans);
@@ -120,11 +120,11 @@ app.get('/api/categories/:id/artisans', async (req, res) => {
 // Recherche : GET /api/artisans?recherche=fleur -> les artisans dont le nom contient le texte
 app.get('/api/artisans', async (req, res) => {
   try {
-    const texte = req.query.recherche || '';     // trou 1 : le nom du paramètre après le « ? »
+    const texte = req.query.recherche || '';     
 
     const artisans = await Artisan.findAll({
       where: { nom: { [Op.like]: `%${texte}%` } },
-      attributes: { exclude: ['email'] },     // trou 2
+      attributes: { exclude: ['email'] }, 
       include: { model: Specialite, attributes: ['nom'] },
     });
     res.json(artisans);
@@ -160,8 +160,8 @@ app.post('/api/artisans/:id/contact',limiteContact, async (req, res) => {
     const { nom, email, objet, message } = req.body;
     const info = await transporteur.sendMail({
       from: '"Trouve ton artisan" <no-reply@trouve-ton-artisan.fr>',
-      to: artisan.email,          // trou 1 : l'adresse de l'artisan
-      replyTo: email,     // trou 2 : l'adresse du visiteur
+      to: artisan.email,          
+      replyTo: email,     
       subject: `[Trouve ton artisan] ${objet}`,
       text: `Bonjour ${artisan.nom},
 
