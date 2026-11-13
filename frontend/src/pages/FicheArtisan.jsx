@@ -1,4 +1,4 @@
-// Fiche artisan : infos détaillées (+ formulaire de contact, bientôt)
+// Fiche artisan : infos détaillées sur un artisan + formulaire de contact
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { appelerApi } from "../services/api";
@@ -51,7 +51,7 @@ function FicheArtisan() {
     setIntrouvable(false);
     appelerApi(`/artisans/${id}`)
       .then((donnees) => setArtisan(donnees))
-      .catch(() => setIntrouvable(true)); // 404 de l'API → page introuvable
+      .catch(() => setIntrouvable(true)); // "404 de l'API page introuvable" : la fiche n'existe pas
   }, [id]);
 
   // Cas 1 : l'artisan n'existe pas

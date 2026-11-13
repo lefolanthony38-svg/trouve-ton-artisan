@@ -1,11 +1,11 @@
-// En-tête : logo (lien vers l'accueil) + menu des catégories (venant de la base)
+// En-tête : logo (lien vers l'accueil) + menu des catégories (venant de la base) + recherche par nom + menu mobile
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { appelerApi } from "../services/api";
 import logo from "../assets/logo.svg";
 
 function Header() {
-  // La boîte "categories", vide au départ
+  // La boîte "categories", le texte de recherche, et l'état du menu mobile
   const [categories, setCategories] = useState([]);
   const [texte, setTexte] = useState("");
   const [menuOuvert, setMenuOuvert] = useState(false);
@@ -17,7 +17,7 @@ function Header() {
     const motCle = texte.trim();
     if (motCle === "") return; // recherche vide : on ne fait rien
     naviguer(`/recherche?q=${encodeURIComponent(motCle)}`);
-    setMenuOuvert(false);
+    setMenuOuvert(false); // on ferme le menu mobile si on était dessus
   }
   // Au démarrage : on demande les catégories à l'API, puis on les range dans la boîte
   useEffect(() => {

@@ -1,4 +1,4 @@
-// Page liste : les artisans par catégorie ou d’une recherche
+// Page liste : les artisans d'une catégorie ou d’une recherche
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router";
 import { appelerApi } from "../services/api";

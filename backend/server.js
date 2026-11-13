@@ -54,7 +54,7 @@ function validerContact({ nom, email, objet, message }) {
   return erreurs;
 }
 
-// Route de test : GET /api/categories -> la liste des catégories pour le menu
+// Page liste : GET /api/categories -> toutes les catégories
 app.get('/api/categories', async (req, res) => {
   try {
     const categories = await Categorie.findAll({ order: [['nom', 'ASC']] });
@@ -134,11 +134,15 @@ app.get('/api/artisans', async (req, res) => {
   }
 });
 
-// Anti-spam : 5 messages de contact maximum par heure et par adresse IP
+// Anti-spam : limite le nombre de messages envoyés par un visiteur (même IP) à 5 par heure
 const limiteContact = rateLimit({
   windowMs: 60 * 60 * 1000, // fenêtre de 1 heure (en millisecondes)
-    limit: process.env.NODE_ENV === 'production' ? 5 : 100, // 5 en ligne, 100 en développement                 // 5 envois maximum dans cette fenêtre
-  message: { message: 'Trop de messages envoyés. Réessayez dans une heure.' },
+    limit: process.env.NODE_ENV === 'production' ? 5 : 100, // 5 envois maximum dans cette fenêtre (100 en dev pour tester)
+  standardHeaders: true, // renvoie les infos de limite dans les en-têtes RateLimit-*
+  legacyHeaders: false,  // désactive les en-têtes X-RateLimit-*
+  handler: (req, res) => res.status(429).json({
+    message: 'Trop de messages envoyés. Réessayez dans une heure.',
+  }),
 });
 
 // Contact : POST /api/artisans/:id/contact -> envoie le message du visiteur à l'artisan

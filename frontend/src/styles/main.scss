@@ -16,11 +16,11 @@ $body-color: $gris-fonce;
 // Police de la charte (Graphik), avec des polices de secours
 $font-family-base: "Graphik", "Inter", system-ui, sans-serif;
 
-// On charge Bootstrap APRÈS nos variables, pour qu'il les utilise
-@import "bootstrap/scss/bootstrap";
+// Les fonds clairs de Bootstrap (bg-light) prennent la couleur de la charte
+$light: $fond-clair;
 
-$light: $fond-clair;   // les fonds clairs de Bootstrap utilisent la couleur de la charte
-// ===== Styles propres au site =====
+// On charge Bootstrap APRÈS nos variables, pour qu'il les utilise
+@import "bootstrap/scss/bootstrap";// ===== Styles propres au site =====
 // Étoiles de notation : bleu de la charte
 .etoiles {
   color: $primary;
