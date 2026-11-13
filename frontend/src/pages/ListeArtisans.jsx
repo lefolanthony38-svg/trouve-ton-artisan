@@ -30,11 +30,12 @@ function ListeArtisans() {
       .catch(() => setArtisans([]));
   }, [id, motCle]);
 
+    const titre = motCle ? `Résultats pour « ${motCle} »` : categorie ? categorie.nom : 'Liste des artisans';
   return (
     <main className="container py-4 flex-grow-1">
-      <h1 className="text-secondary">
-        {motCle ? `Résultats pour « ${motCle} »` : categorie ? categorie.nom : 'Liste des artisans'}
-      </h1>      
+      <title>{`${titre} | Trouve ton artisan`}</title>
+      <meta name="description" content="Liste des artisans de la région Auvergne-Rhône-Alpes." />
+      <h1 className="text-secondary">{titre}</h1>     
       <p>{artisans.length} artisan(s) trouvé(s)</p>
 
       {artisans.length === 0 && (

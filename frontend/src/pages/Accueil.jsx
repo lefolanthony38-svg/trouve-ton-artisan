@@ -22,6 +22,8 @@ function Accueil() {
 
   return (
     <main className="flex-grow-1">
+            <title>Trouve ton artisan, Auvergne-Rhône-Alpes</title>
+      <meta name="description" content="Trouvez un artisan de confiance près de chez vous en Auvergne-Rhône-Alpes : bâtiment, services, fabrication, alimentation." />
       <section className="bg-light py-5">
         <div className="container">
           <h1 className="text-secondary fw-bold">Trouvez l'artisan qu'il vous faut, près de chez vous</h1>

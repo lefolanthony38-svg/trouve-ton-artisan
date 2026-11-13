@@ -60,6 +60,8 @@ function FicheArtisan() {
   // Cas 3 : on affiche la fiche
   return (
     <main className="flex-grow-1">
+            <title>{`${artisan.nom} | Trouve ton artisan`}</title>
+      <meta name="description" content={`${artisan.nom}, ${artisan.Specialite.nom} à ${artisan.ville}. Contactez cet artisan via Trouve ton artisan.`} />
       <section className="bg-light py-4">
         <div className="container">
           <div className="row g-4 align-items-center">

@@ -7,6 +7,8 @@ function Page404() {
 
   return (
     <main className="container py-5 text-center flex-grow-1">
+            <title>{`Page non trouvée | Trouve ton artisan`}</title>
+      <meta name="description" content={`Page non trouvée sur le site Trouve ton artisan.`} />
       <img src={image404} alt="" className="img-fluid mb-4" style={{ maxWidth: '320px' }} />
       <h1 className="text-secondary fw-bold">Page non trouvée</h1>
       <p className="mb-4">La page que vous cherchez n'existe pas ou a été déplacée.</p>

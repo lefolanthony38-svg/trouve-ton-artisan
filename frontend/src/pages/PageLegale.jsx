@@ -14,6 +14,8 @@ function PageLegale() {
 
   return (
     <main className="container py-5 flex-grow-1">
+            <title>{`${titre} | Trouve ton artisan`}</title>
+            <meta name="description" content={`Page ${titre} du site Trouve ton artisan, pour trouver un artisan de confiance en Auvergne-Rhône-Alpes.`} />
       <h1 className="text-secondary fw-bold">{titre}</h1>
       <p>Page en construction. Son contenu sera ajouté prochainement.</p>
     </main>
