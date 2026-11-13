@@ -5,9 +5,9 @@ function Etoiles({ note }) {
   const vides = 5 - pleines - demi;
   return (
     <span className="etoiles" role="img" aria-label={`Note : ${note} sur 5`}>
-      {'★'.repeat(pleines)}
-      {demi === 1 && '⯪'}
-      {'☆'.repeat(vides)}
+      {[...Array(pleines)].map((_, i) => <span key={`p${i}`}>★</span>)}
+      {demi === 1 && <span>⯪</span>}
+      {[...Array(vides)].map((_, i) => <span key={`v${i}`}>☆</span>)}
     </span>
   );
 }

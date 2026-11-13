@@ -25,6 +25,11 @@ $light: $fond-clair;   // les fonds clairs de Bootstrap utilisent la couleur de 
 .etoiles {
   color: $primary;
   letter-spacing: 2px;
+    span {
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+  }
 }
 
 // Rond numéroté des étapes "Comment trouver mon artisan ?"
