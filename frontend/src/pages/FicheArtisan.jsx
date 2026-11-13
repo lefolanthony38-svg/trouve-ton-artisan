@@ -16,6 +16,17 @@ function FicheArtisan() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  function envoyerMessage(event) {
+    event.preventDefault();
+    console.log('Clic reçu, envoi de :', form);
+    appelerApi(`/artisans/${id}/contact`, {
+      method: 'POST',
+      body: JSON.stringify(form),
+    })
+      .then(() => console.log('Message envoyé'))
+      .catch((erreur) => console.log(erreur.status, erreur.erreurs));
+  }
+
   useEffect(() => {
     setArtisan(null);
     setIntrouvable(false);
@@ -65,7 +76,7 @@ function FicheArtisan() {
       </section>
                  <section className="container pb-5">
         <h2 className="text-secondary">Contacter l'artisan</h2>
-        <form>
+        <form onSubmit={envoyerMessage}>
           <div className="mb-3">
             <label htmlFor="nom" className="form-label">Nom</label>
             <input id="nom" name="nom" type="text" className="form-control" maxLength={100} required value={form.nom} onChange={changerChamp} />

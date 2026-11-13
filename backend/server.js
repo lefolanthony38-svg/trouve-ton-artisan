@@ -137,7 +137,7 @@ app.get('/api/artisans', async (req, res) => {
 // Anti-spam : 5 messages de contact maximum par heure et par adresse IP
 const limiteContact = rateLimit({
   windowMs: 60 * 60 * 1000, // fenêtre de 1 heure (en millisecondes)
-  limit: 5,                 // 5 envois maximum dans cette fenêtre
+    limit: process.env.NODE_ENV === 'production' ? 5 : 100, // 5 en ligne, 100 en développement                 // 5 envois maximum dans cette fenêtre
   message: { message: 'Trop de messages envoyés. Réessayez dans une heure.' },
 });
 
