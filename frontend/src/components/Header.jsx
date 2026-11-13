@@ -39,7 +39,7 @@ function Header() {
             height="50"
           />
         </Link>
-        <button
+        <button // bouton du menu mobile
           type="button"
           className="btn btn-outline-primary d-md-none"
           aria-label={menuOuvert ? "Fermer le menu" : "Ouvrir le menu"}

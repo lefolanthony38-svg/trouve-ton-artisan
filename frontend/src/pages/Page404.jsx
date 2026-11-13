@@ -28,7 +28,7 @@ function Page404() {
       <button
         type="button"
         className="btn btn-outline-primary"
-        onClick={() => naviguer(-1)}
+        onClick={() => naviguer(-1)} // naviguer(-1) = page précédente ((-1) = historique du navigateur)
       >
         Page précédente
       </button>

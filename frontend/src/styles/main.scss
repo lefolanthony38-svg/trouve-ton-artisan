@@ -1,16 +1,16 @@
 // ===== Charte graphique (brief §4.4) =====
-$fond-clair:  #f1f8fc;
-$bleu:        #0074c7;
-$bleu-fonce:  #00497c;
-$gris-fonce:  #384050;
-$rouge:       #cd2c2e;
-$vert:        #82b864;
+$fond-clair: #f1f8fc;
+$bleu: #0074c7;
+$bleu-fonce: #00497c;
+$gris-fonce: #384050;
+$rouge: #cd2c2e;
+$vert: #82b864;
 
 // On remplace les couleurs de Bootstrap par celles de la charte
-$primary:   $bleu;
+$primary: $bleu;
 $secondary: $bleu-fonce;
-$danger:    $rouge;
-$success:   $vert;
+$danger: $rouge;
+$success: $vert;
 $body-color: $gris-fonce;
 
 // Police de la charte (Graphik), avec des polices de secours
@@ -20,14 +20,16 @@ $font-family-base: "Graphik", "Inter", system-ui, sans-serif;
 $light: $fond-clair;
 
 // On charge Bootstrap APRÈS nos variables, pour qu'il les utilise
-@import "bootstrap/scss/bootstrap";// ===== Styles propres au site =====
+@import "bootstrap/scss/bootstrap";
+
+// ===== Styles propres au site =====
 // Étoiles de notation : bleu de la charte
 .etoiles {
   color: $primary;
   letter-spacing: 2px;
-    span {
+  span {
     display: inline-block;
-    width: 1em;
+    width: 1em; // pour que les étoiles soient alignées verticalement
     text-align: center;
   }
 }

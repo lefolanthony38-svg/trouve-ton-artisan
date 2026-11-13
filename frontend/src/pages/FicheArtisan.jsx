@@ -16,16 +16,17 @@ function FicheArtisan() {
     objet: "",
     message: "",
   });
-  const [statut, setStatut] = useState(null);
-  const [erreurs, setErreurs] = useState({});
+  const [statut, setStatut] = useState(null); // null = pas encore envoyé, "ok" = envoyé, "limite" = trop de messages, "erreur" = erreur serveur
+  const [erreurs, setErreurs] = useState({}); // erreurs de validation du formulaire (nom, email, objet, message)
 
+  // Met à jour le champ tapé. "...form" recopie les autres champs, sinon ils seraient effacés
   function changerChamp(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
   function envoyerMessage(event) {
     event.preventDefault();
-    setStatut(null);
+    setStatut(null); // on efface le résultat de l'envoi précédent (bandeau + erreurs)
     setErreurs({});
     appelerApi(`/artisans/${id}/contact`, {
       method: "POST",
@@ -33,10 +34,10 @@ function FicheArtisan() {
     })
       .then(() => {
         setStatut("ok");
-        setForm({ nom: "", email: "", objet: "", message: "" });
+        setForm({ nom: "", email: "", objet: "", message: "" }); // on vide le formulaire après envoi
       })
       .catch((erreur) => {
-        if (erreur.status === 400) {
+        if (erreur.status === 400) { // le formulaire est invalide : on affiche les erreurs
           setErreurs(erreur.erreurs || {});
         } else if (erreur.status === 429) {
           setStatut("limite");
