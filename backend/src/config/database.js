@@ -13,8 +13,10 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT,
     dialect: 'mysql',       // type de base de données
     logging: false,         // n'affiche pas chaque requête SQL dans le terminal
-        dialectOptions: {
+    dialectOptions: {
       decimalNumbers: true,  // la note arrive en nombre (4.9) et pas en texte ("4.9")
+      // En ligne (TiDB Cloud), la connexion doit être chiffrée (TLS)
+      ssl: process.env.DB_SSL === 'true' ? { minVersion: 'TLSv1.2', rejectUnauthorized: true } : undefined,
     },
   }
 );

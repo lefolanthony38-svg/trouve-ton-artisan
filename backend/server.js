@@ -16,6 +16,8 @@ const app = express();
 app.use(helmet()); // ajoute des en-têtes de sécurité et cache "X-Powered-By: Express"
 app.use(cors({ origin: process.env.FRONT_URL })); // autorise les requêtes depuis le site React
 app.use(express.json()); // permet de lire le JSON envoyé par le formulaire de contact
+// Sur Render, les requêtes passent par un proxy : on lit la vraie IP du visiteur (pour le rate limit)
+app.set('trust proxy', 1);
 
 // Vérifie qu'une valeur est un texte dont la longueur est entre min et max
 function texteValide(valeur, min, max) {
